@@ -1,5 +1,11 @@
-{{page-title "Dummy"}}
+{{page-title "Fruits UI"}}
 
-<h2 id="title">Welcome to Ember</h2>
+<h1 id="title">Fruits UI application library</h1>
 
-{{outlet}}
+<h2>Pagination</h2>
+
+<FruitsUi::Pagination
+  @route="application"
+  @page={{this.router.currentRoute.queryParams.page}}
+  @totalPages={{this.totalPages}} />
+
