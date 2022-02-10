@@ -1,7 +1,7 @@
 fruits-ui
 ==============================================================================
 
-[Short description of the addon.]
+UI components for datafruits, streampusher, whatever
 
 
 Compatibility
