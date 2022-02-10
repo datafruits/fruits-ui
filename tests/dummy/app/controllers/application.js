@@ -4,5 +4,5 @@ import { inject as service } from '@ember/service';
 export default class ApplicationController extends Controller {
   queryParams = ['page'];
   @service router;
-  totalPages = 12;
+  totalPages = 50;
 }
