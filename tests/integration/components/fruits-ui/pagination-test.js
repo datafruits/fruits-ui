@@ -60,6 +60,8 @@ module('Integration | Component | fruits-ui/pagination', function (hooks) {
       hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} route="application" />`
     );
 
-    assert.dom(this.element).hasText('« 1 2 ... 64 65 66 67 68 ... 98 99 100 »');
+    assert
+      .dom(this.element)
+      .hasText('« 1 2 ... 64 65 66 67 68 ... 98 99 100 »');
   });
 });
