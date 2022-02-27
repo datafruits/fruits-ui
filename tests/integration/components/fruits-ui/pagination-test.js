@@ -6,6 +6,24 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | fruits-ui/pagination', function (hooks) {
   setupRenderingTest(hooks);
 
+  test('if max pages are less than or eq to 5 they are always shown', async function (assert) {
+    this.page = 1;
+    this.totalPages = 5;
+    await render(
+      hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} route="application" />`
+    );
+
+    assert.dom(this.element).hasText('1 2 3 4 5 »');
+
+    this.page = 3;
+    this.totalPages = 5;
+    await render(
+      hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} route="application" />`
+    );
+
+    assert.dom(this.element).hasText('« 1 2 3 4 5 »');
+  });
+
   test('it shows the first page', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
@@ -16,7 +34,7 @@ module('Integration | Component | fruits-ui/pagination', function (hooks) {
       hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} route="application" />`
     );
 
-    assert.dom(this.element).hasText('1 2 3 4 5 ... 100 »');
+    assert.dom(this.element).hasText('1 2 3 4 5 ... 98 99 100 »');
   });
 
   test('it shows the last page', async function (assert) {
@@ -29,7 +47,7 @@ module('Integration | Component | fruits-ui/pagination', function (hooks) {
       hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} route="application" />`
     );
 
-    assert.dom(this.element).hasText('« 1 2 ... 96 97 98 99 100 »');
+    assert.dom(this.element).hasText('« 1 2 ... 98 99 100');
   });
 
   test('it shows a page in the middle', async function (assert) {
@@ -42,6 +60,6 @@ module('Integration | Component | fruits-ui/pagination', function (hooks) {
       hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} route="application" />`
     );
 
-    assert.dom(this.element).hasText('« 1 2 ... 64 65 66 67 68... 99 100 »');
+    assert.dom(this.element).hasText('« 1 2 ... 64 65 66 67 68 ... 98 99 100 »');
   });
 });
