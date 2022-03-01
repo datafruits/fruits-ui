@@ -36,7 +36,7 @@ export default class FruitsUiPaginationComponent extends Component<PaginationArg
     if (this.page > this.MAX_PAGES_COUNT + 1) {
       return this.range(1, 2);
     } else {
-      if (this.args.totalPages >= this.MAX_PAGES_COUNT) {
+      if (this.args.totalPages > this.MAX_PAGES_COUNT) {
         return this.range(1, this.MAX_PAGES_COUNT + 1);
       } else {
         return this.range(1, this.args.totalPages);
