@@ -2,7 +2,8 @@ import Component from '@glimmer/component';
 
 interface PaginationArgs {
   route: string;
-  page: string;
+  page?: string;
+  paramName?: string;
   totalPages: number;
 }
 
@@ -20,15 +21,23 @@ export default class FruitsUiPaginationComponent extends Component<PaginationArg
   }
 
   get page(): number {
-    return parseInt(this.args.page) || 1;
+    if (this.args.page) {
+      return parseInt(this.args.page);
+    } else {
+      return 1;
+    }
+  }
+
+  get paramName(): string {
+    return this.args.paramName || 'page';
   }
 
   _firstPagesRange(): number[] {
-    if (this.page >= this.MAX_PAGES_COUNT + 1) {
+    if (this.page > this.MAX_PAGES_COUNT + 1) {
       return this.range(1, 2);
     } else {
-      if (this.args.totalPages >= this.MAX_PAGES_COUNT) {
-        return this.range(1, this.MAX_PAGES_COUNT);
+      if (this.args.totalPages > this.MAX_PAGES_COUNT) {
+        return this.range(1, this.MAX_PAGES_COUNT + 1);
       } else {
         return this.range(1, this.args.totalPages);
       }

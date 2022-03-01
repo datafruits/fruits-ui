@@ -34,7 +34,7 @@ module('Integration | Component | fruits-ui/pagination', function (hooks) {
       hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} route="application" />`
     );
 
-    assert.dom(this.element).hasText('1 2 3 4 5 ... 98 99 100 »');
+    assert.dom(this.element).hasText('1 2 3 4 5 6 ... 98 99 100 »');
   });
 
   test('it shows the last page', async function (assert) {
@@ -63,5 +63,24 @@ module('Integration | Component | fruits-ui/pagination', function (hooks) {
     assert
       .dom(this.element)
       .hasText('« 1 2 ... 64 65 66 67 68 ... 98 99 100 »');
+  });
+
+  test('uses a custom paramName', async function (assert) {
+    this.page = 1;
+    this.totalPages = 5;
+    this.paramName = 'tracksPage';
+    await render(
+      hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} @paramName={{this.paramName}} route="application" />`
+    );
+
+    assert.dom(this.element).hasText('1 2 3 4 5 »');
+
+    this.page = 3;
+    this.totalPages = 5;
+    await render(
+      hbs`<FruitsUi::Pagination @page={{this.page}} @totalPages={{this.totalPages}} @paramName={{this.paramName}} route="application" />`
+    );
+
+    assert.dom(this.element).hasText('« 1 2 3 4 5 »');
   });
 });
