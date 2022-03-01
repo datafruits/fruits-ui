@@ -1,17 +1,13 @@
 import Component from '@glimmer/component';
 
-interface Args {
+interface PaginationArgs {
   route: string;
-  page: number;
+  page: string;
   totalPages: number;
 }
 
-export default class FruitsUiPaginationComponent extends Component<Args> {
+export default class FruitsUiPaginationComponent extends Component<PaginationArgs> {
   MAX_PAGES_COUNT: number = 5;
-
-  constructor(owner: any, args: Args) {
-    super(owner, args);
-  }
 
   range(min: number, max: number): number[] {
     return Array.from(new Array(max - min + 1).keys()).map((num) => {
@@ -24,7 +20,7 @@ export default class FruitsUiPaginationComponent extends Component<Args> {
   }
 
   get page(): number {
-    return this.args.page || 1;
+    return parseInt(this.args.page) || 1;
   }
 
   _firstPagesRange(): number[] {
@@ -51,6 +47,7 @@ export default class FruitsUiPaginationComponent extends Component<Args> {
   }
 
   _middlePagesRange(): number[] {
+    // why is this.page a string here?!
     return this.range(this.page - 2, this.page + 2);
   }
 
