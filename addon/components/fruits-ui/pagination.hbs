@@ -2,7 +2,7 @@
   <span class="pagination prev-link">
     <LinkTo
       @route={{@route}}
-      @query={{hash page=(dec this.page)}}
+      @query={{pagination-query this.paramName (dec this.page)}}
     >
       «
     </LinkTo>
@@ -13,7 +13,7 @@
     <span class="pagination active-page">{{number}}</span>
   {{else}}
     <span class="pagination number">
-      <LinkTo @route={{@route}} @query={{hash page=number}}>
+      <LinkTo @route={{@route}} @query={{pagination-query this.paramName number}}>
         {{number}}
       </LinkTo>
     </span>
@@ -28,7 +28,7 @@
       <span class="pagination active-page">{{number}}</span>
     {{else}}
       <span class="pagination number">
-        <LinkTo @route={{@route}} @query={{hash page=number}}>
+        <LinkTo @route={{@route}} @query={{pagination-query this.paramName number}}>
           {{number}}
         </LinkTo>
       </span>
@@ -44,7 +44,7 @@
       <span class="pagination active-page">{{number}}</span>
     {{else}}
       <span class="pagination number">
-        <LinkTo @route={{@route}} @query={{hash page=number}}>
+        <LinkTo @route={{@route}} @query={{pagination-query this.paramName number}}>
           {{number}}
         </LinkTo>
       </span>
@@ -55,7 +55,7 @@
   <span class="pagination next-link">
     <LinkTo
       @route={{@route}}
-      @query={{hash page=(inc this.page)}}
+      @query={{pagination-query this.paramName (inc this.page)}}
     >
       »
     </LinkTo>
