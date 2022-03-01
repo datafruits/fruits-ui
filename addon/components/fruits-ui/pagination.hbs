@@ -9,7 +9,7 @@
   </span>
 {{/if}}
 {{#each this.firstPagesRange as |number|}}
-  {{#if (eq-number number this.page)}}
+  {{#if (eq number this.page)}}
     <span class="pagination active-page">{{number}}</span>
   {{else}}
     <span class="pagination number">
@@ -24,7 +24,7 @@
     ...
   </span>
   {{#each this.middlePagesRange as |number|}}
-    {{#if (eq-number number this.page)}}
+    {{#if (eq number this.page)}}
       <span class="pagination active-page">{{number}}</span>
     {{else}}
       <span class="pagination number">
@@ -40,7 +40,7 @@
     ...
   </span>
   {{#each this.lastPagesRange as |number|}}
-    {{#if (eq-number number this.page)}}
+    {{#if (eq number this.page)}}
       <span class="pagination active-page">{{number}}</span>
     {{else}}
       <span class="pagination number">
