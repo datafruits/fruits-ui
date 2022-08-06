@@ -1,29 +1,15 @@
-{{#if (gt this.page 1)}}
-  <span class="pagination prev-link">
-    <LinkTo
-      @route={{@route}}
-      @query={{pagination-query this.paramName (dec this.page)}}
-    >
-      «
-    </LinkTo>
-  </span>
-{{/if}}
-{{#each this.firstPagesRange as |number|}}
-  {{#if (eq number this.page)}}
-    <span class="pagination active-page">{{number}}</span>
-  {{else}}
-    <span class="pagination number">
-      <LinkTo @route={{@route}} @query={{pagination-query this.paramName number}}>
-        {{number}}
+<div class="pagination-wrapper">
+  {{#if (gt this.page 1)}}
+    <span class="pagination prev-link">
+      <LinkTo
+        @route={{@route}}
+        @query={{pagination-query this.paramName (dec this.page)}}
+      >
+        «
       </LinkTo>
     </span>
   {{/if}}
-{{/each}}
-{{#if this.showMiddlePages}}
-  <span>
-    ...
-  </span>
-  {{#each this.middlePagesRange as |number|}}
+  {{#each this.firstPagesRange as |number|}}
     {{#if (eq number this.page)}}
       <span class="pagination active-page">{{number}}</span>
     {{else}}
@@ -34,30 +20,46 @@
       </span>
     {{/if}}
   {{/each}}
-{{/if}}
-{{#if this.showLastPages}}
-  <span>
-    ...
-  </span>
-  {{#each this.lastPagesRange as |number|}}
-    {{#if (eq number this.page)}}
-      <span class="pagination active-page">{{number}}</span>
-    {{else}}
-      <span class="pagination number">
-        <LinkTo @route={{@route}} @query={{pagination-query this.paramName number}}>
-          {{number}}
-        </LinkTo>
-      </span>
-    {{/if}}
-  {{/each}}
-{{/if}}
-{{#if (lt this.page @totalPages)}}
-  <span class="pagination next-link">
-    <LinkTo
-      @route={{@route}}
-      @query={{pagination-query this.paramName (inc this.page)}}
-    >
-      »
-    </LinkTo>
-  </span>
-{{/if}}
+  {{#if this.showMiddlePages}}
+    <span>
+      ...
+    </span>
+    {{#each this.middlePagesRange as |number|}}
+      {{#if (eq number this.page)}}
+        <span class="pagination active-page">{{number}}</span>
+      {{else}}
+        <span class="pagination number">
+          <LinkTo @route={{@route}} @query={{pagination-query this.paramName number}}>
+            {{number}}
+          </LinkTo>
+        </span>
+      {{/if}}
+    {{/each}}
+  {{/if}}
+  {{#if this.showLastPages}}
+    <span>
+      ...
+    </span>
+    {{#each this.lastPagesRange as |number|}}
+      {{#if (eq number this.page)}}
+        <span class="pagination active-page">{{number}}</span>
+      {{else}}
+        <span class="pagination number">
+          <LinkTo @route={{@route}} @query={{pagination-query this.paramName number}}>
+            {{number}}
+          </LinkTo>
+        </span>
+      {{/if}}
+    {{/each}}
+  {{/if}}
+  {{#if (lt this.page @totalPages)}}
+    <span class="pagination next-link">
+      <LinkTo
+        @route={{@route}}
+        @query={{pagination-query this.paramName (inc this.page)}}
+      >
+        »
+      </LinkTo>
+    </span>
+  {{/if}}
+</div>
